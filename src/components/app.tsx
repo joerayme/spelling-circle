@@ -2,26 +2,15 @@ import { h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
 
 import Letters from "./letters";
-import LettersInput from "./lettersInput";
 import WordList from "./wordList";
 import Loading from "./loading";
 import Progress from "./progress";
-
-const shuffle = (arr: string[]) => {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-};
-
-const containsLetters = (
-  word: string,
-  letters: string[],
-  regex: RegExp
-): boolean => {
-  return !!word.match(regex) && word.indexOf(letters[0]) >= 0;
-};
+import { shuffle } from "../utils/words";
+import {
+  getAllWords,
+  getLettersFromLocationHash,
+  getNewLetters,
+} from "../utils/fetchers";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -42,30 +31,22 @@ const App = () => {
   };
 
   useEffect(() => {
-    const allWords = fetch("./wordlist.txt").then(async (response) => {
-      return (await response.text()).split("\n");
-    });
-    const seeds = fetch("./seedwords.txt").then(async (response) => {
-      const words = (await response.text()).split("\n");
-      const seed = words[Math.floor(Math.random() * words.length)];
+    const allWords = getAllWords();
 
-      const letters = shuffle(
-        seed.split("").filter((a, i, arr) => arr.indexOf(a) === i)
-      );
-
-      setLetters(letters);
-
-      const regex = RegExp(`^[${letters.join("")}]+$`);
-      const availableWords = (await allWords).filter((w) =>
-        containsLetters(w, letters, regex)
-      );
-
-      setWords(availableWords);
-
-      return true;
-    });
-
-    seeds.then(() => setLoading(false));
+    getLettersFromLocationHash(allWords)
+      .then((response) => {
+        if (response) {
+          return response;
+        } else {
+          return getNewLetters(allWords);
+        }
+      })
+      .then((response) => {
+        setWords(response.availableWords);
+        setLetters(response.letters);
+        window.location.hash = btoa(response.letters.join(""));
+        setLoading(false);
+      });
   }, []);
 
   const onShuffle = () => {
@@ -79,6 +60,14 @@ const App = () => {
     <div id="app">
       <nav>
         <h1>Spelling Circle</h1>
+        <button
+          onClick={() => {
+            window.location.hash = "";
+            window.location.reload();
+          }}
+        >
+          Get new puzzle
+        </button>
       </nav>
       <main>
         {loading ? (
