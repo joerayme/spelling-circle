@@ -15,8 +15,12 @@ const shuffle = (arr: string[]) => {
   return arr;
 };
 
-const containsAllLetters = (word: string, letters: string[]): boolean => {
-  return letters.reduce<boolean>((acc, l) => acc && word.indexOf(l) > -1, true);
+const containsLetters = (
+  word: string,
+  letters: string[],
+  regex: RegExp
+): boolean => {
+  return !!word.match(regex) && word.indexOf(letters[0]) >= 0;
 };
 
 const App = () => {
@@ -51,8 +55,9 @@ const App = () => {
 
       setLetters(letters);
 
+      const regex = RegExp(`^[${letters.join("")}]+$`);
       const availableWords = (await allWords).filter((w) =>
-        containsAllLetters(w, letters)
+        containsLetters(w, letters, regex)
       );
 
       setWords(availableWords);
