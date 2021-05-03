@@ -74,8 +74,11 @@ const App = () => {
         ) : (
           <Fragment>
             <section>
-              <LettersInput letters={letters} submitWord={submitWord} />
-              <Letters letters={letters} onShuffle={onShuffle} />
+              <Letters
+                letters={letters}
+                submitWord={submitWord}
+                onShuffle={onShuffle}
+              />
             </section>
             <section>
               <Progress availableWords={words} foundWords={foundWords} />
