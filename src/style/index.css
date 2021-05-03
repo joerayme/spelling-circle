@@ -132,9 +132,24 @@ table {
   --main-color: #fa9513;
 }
 
-h1 {
-  font-size: 2rem;
+#app {
+  padding: 2rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+h1,
+h2 {
   margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
 }
 
 main {
@@ -145,6 +160,7 @@ main {
 
 main > div {
   flex-basis: 40%;
+  padding: 1rem;
 }
 
 @keyframes blink {
@@ -158,7 +174,7 @@ main > div {
   display: flex;
   justify-content: center;
 
-  font-size: 1.6rem;
+  font-size: 3rem;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -172,7 +188,7 @@ main > div {
   background: var(--main-color);
   margin-left: 0.125rem;
   width: 0.125rem;
-  height: 1.125rem;
+  height: 2.2rem;
   display: inline-flex;
 
   animation: 1s blink step-end infinite;
@@ -182,16 +198,25 @@ main > div {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  font-size: 3rem;
 }
 
 .letters .letter {
-  display: block;
-  border: 1px solid black;
   text-transform: uppercase;
   text-align: center;
-  border-radius: 2rem;
-  padding: 0.25rem;
   flex: 1 25%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.letters .letter span {
+  display: block;
+  border: 1px solid black;
+  border-radius: 5rem;
+  padding: 0.25rem;
+  line-height: 5rem;
+  width: 5rem;
 }
 
 .letters .letter:nth-child(1) {
