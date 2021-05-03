@@ -182,6 +182,12 @@ button.pressed {
   animation: 0.3s fade-out linear forwards;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -355,4 +361,4 @@ main > section {
 }
 
 
-/*# sourceMappingURL=ssr-bundle.af204.css.map*/
+/*# sourceMappingURL=ssr-bundle.772a8.css.map*/
