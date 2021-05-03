@@ -36,8 +36,11 @@ const Letters: FunctionalComponent<LettersProps> = ({
   };
 
   window.onkeydown = (e: KeyboardEvent) => {
-    setLastKeyPressed(e.key.toLowerCase());
-    !disableInput && chooseLetter(e.key.toLowerCase());
+    if (!e.altKey && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      setLastKeyPressed(e.key.toLowerCase());
+      !disableInput && chooseLetter(e.key.toLowerCase());
+    }
   };
 
   return (
