@@ -130,10 +130,11 @@ table {
 
 :root {
   --main-color: #fa9513;
+  --background-color: #f9f5db;
 }
 
 body {
-  background: #f9f5db;
+  background: var(--background-color);
   color: #2f2f2f;
 }
 
@@ -162,6 +163,20 @@ h2 {
   font-size: 2rem;
 }
 
+button {
+  background: var(--background-color);
+  border: 1px solid black;
+  border-radius: 5rem;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+}
+button:active {
+  background: rgb(213, 213, 213);
+}
+button:disabled {
+  color: rgb(114, 114, 114);
+}
+
 main {
   display: flex;
   flex-direction: row;
@@ -175,7 +190,7 @@ main > section {
 
 @keyframes blink {
   50% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -200,33 +215,35 @@ main > section {
   width: 0.125rem;
   height: 2.2rem;
   display: inline-flex;
+  opacity: 0;
 
   animation: 1s blink step-end infinite;
+}
+.input-container.disabled > div::after {
+  animation: none;
 }
 
 .letters .grid {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  font-size: 3rem;
 }
 
 .letters .letter {
-  text-transform: uppercase;
-  text-align: center;
   flex: 1 25%;
   display: flex;
   justify-content: center;
   padding: 1rem;
 }
 
-.letters .letter span {
+.letters .letter button {
   display: block;
-  border: 1px solid black;
-  border-radius: 5rem;
-  padding: 0.25rem;
   line-height: 5rem;
   width: 5rem;
+  padding: 0;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .letters .letter:nth-child(1) {
@@ -262,14 +279,20 @@ main > section {
 }
 
 .letters .center {
-  color: var(--main-color);
   order: 2;
+}
+.letters .center button {
+  color: var(--main-color);
 }
 
 .wordlist ol li {
   list-style: none;
   text-transform: capitalize;
   margin-bottom: 0.5rem;
+}
+
+.wordlist ol li.highlight {
+  color: var(--main-color);
 }
 
 .progress {
@@ -289,4 +312,4 @@ main > section {
 }
 
 
-/*# sourceMappingURL=ssr-bundle.77ce1.css.map*/
+/*# sourceMappingURL=ssr-bundle.fcff2.css.map*/
