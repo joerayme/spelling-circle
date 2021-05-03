@@ -57,12 +57,7 @@ const App = () => {
         ) : (
           <>
             <div>
-              <LettersInput
-                words={words}
-                foundWords={foundWords}
-                letters={letters}
-                submitWord={submitWord}
-              />
+              <LettersInput letters={letters} submitWord={submitWord} />
               <Letters letters={letters} />
             </div>
             <WordList words={foundWords} />{" "}

@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 
-const LettersInput = ({ words, foundWords, letters, submitWord }) => {
+const LettersInput = ({ letters, submitWord }) => {
   const [currentWord, setCurrentWord] = useState("");
 
   window.onkeydown = (e) => {
@@ -9,7 +9,7 @@ const LettersInput = ({ words, foundWords, letters, submitWord }) => {
     if (letters.includes(letter)) {
       setCurrentWord(currentWord + letter);
     } else if (letter == "backspace") {
-      setCurrentWord(currentWord.slice(0, currentWord.length - 2));
+      setCurrentWord(currentWord.slice(0, currentWord.length - 1));
     } else if (letter == "enter") {
       submitWord(currentWord);
       setCurrentWord("");
