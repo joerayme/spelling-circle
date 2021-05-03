@@ -132,15 +132,25 @@ table {
   --main-color: #fa9513;
 }
 
+body {
+  background: #f9f5db;
+  color: #2f2f2f;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
 #app {
   padding: 2rem;
   max-width: 70rem;
   margin: 0 auto;
+  font-family: "Merriweather", serif;
 }
 
 h1,
 h2 {
-  margin-bottom: 0.25rem;
+  margin-bottom: 1rem;
   font-weight: bold;
 }
 
@@ -259,4 +269,5 @@ main > div {
 .wordlist ol li {
   list-style: none;
   text-transform: capitalize;
+  margin-bottom: 0.5rem;
 }
