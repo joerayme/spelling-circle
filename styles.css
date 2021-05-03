@@ -1,0 +1,240 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --main-color: #fa9513;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+main > div {
+  flex-basis: 40%;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.input-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.input-container .highlight {
+  color: var(--main-color);
+}
+
+.input-container > div::after {
+  content: "";
+  background: var(--main-color);
+  margin-left: 0.125rem;
+  width: 0.125rem;
+  height: 1.125rem;
+  display: inline-flex;
+
+  /* animation: 1000ms blink step-end infinite; */
+}
+
+.letters {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.letters .letter {
+  display: block;
+  border: 1px solid black;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 2rem;
+  padding: 0.25rem;
+  flex: 1 25%;
+}
+
+.letters .letter:nth-child(1) {
+  order: 4;
+}
+
+.letters .letter:nth-child(2) {
+  order: 1;
+}
+.letters .letter:nth-child(2),
+.letters .letter:nth-child(3) {
+  flex-basis: 40%;
+}
+
+.letters .letter:nth-child(3) {
+  order: 2;
+}
+
+.letters .letter:nth-child(4) {
+  order: 3;
+}
+
+.letters .letter:nth-child(5) {
+  order: 5;
+}
+
+.letters .letter:nth-child(6) {
+  order: 6;
+}
+
+.letters .letter:nth-child(7) {
+  order: 7;
+}
+
+.letters .center {
+  color: var(--main-color);
+  order: 2;
+}
+
+.wordlist ol li {
+  list-style: none;
+  text-transform: capitalize;
+}
