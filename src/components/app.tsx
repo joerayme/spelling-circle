@@ -20,9 +20,11 @@ const App = () => {
   const [words, setWords] = useState<string[]>([]);
   const [letters, setLetters] = useState<string[]>([]);
   const [foundWords, setFoundWords] = useState<string[]>([]);
+  const [revealed, setRevealed] = useState(false);
 
   const submitWord = (word: string) => {
     if (
+      !revealed &&
       word.includes(letters[0]) &&
       words.includes(word) &&
       !foundWords.includes(word)
@@ -78,11 +80,17 @@ const App = () => {
                 letters={letters}
                 submitWord={submitWord}
                 onShuffle={onShuffle}
+                disableInput={revealed}
               />
             </section>
             <section>
               <Progress availableWords={words} foundWords={foundWords} />
-              <WordList words={foundWords} />{" "}
+              <WordList
+                foundWords={foundWords}
+                availableWords={words}
+                revealed={revealed}
+                onReveal={() => setRevealed(true)}
+              />{" "}
             </section>
           </Fragment>
         )}

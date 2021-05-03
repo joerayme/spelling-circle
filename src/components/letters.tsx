@@ -6,18 +6,22 @@ type LettersProps = {
   letters: string[];
   onShuffle?: () => void;
   submitWord: (word: string) => void;
+  disableInput: boolean;
 };
 
 const Letters: FunctionalComponent<LettersProps> = ({
   letters,
   onShuffle,
   submitWord,
+  disableInput,
 }) => {
   const [currentWord, setCurrentWord] = useState("");
 
   const submit = () => {
-    submitWord(currentWord);
-    setCurrentWord("");
+    if (!disableInput) {
+      submitWord(currentWord);
+      setCurrentWord("");
+    }
   };
 
   const chooseLetter = (letter: string) => {
@@ -31,16 +35,20 @@ const Letters: FunctionalComponent<LettersProps> = ({
   };
 
   window.onkeydown = (e: KeyboardEvent) => {
-    chooseLetter(e.key.toLowerCase());
+    !disableInput && chooseLetter(e.key.toLowerCase());
   };
 
   return (
     <div class="letters">
-      <LettersInput letters={letters} currentWord={currentWord} />
+      <LettersInput
+        letters={letters}
+        currentWord={currentWord}
+        disableInput={disableInput}
+      />
       <div class="grid">
         {letters.map((l, i) => (
           <div key={i} className={i == 0 ? "letter center" : "letter"}>
-            <span onClick={() => chooseLetter(l)}>{l}</span>
+            <button onClick={() => chooseLetter(l)}>{l}</button>
           </div>
         ))}
       </div>
