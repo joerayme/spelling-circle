@@ -16,6 +16,7 @@ const Letters: FunctionalComponent<LettersProps> = ({
   disableInput,
 }) => {
   const [currentWord, setCurrentWord] = useState("");
+  const [lastKeyPressed, setLastKeyPressed] = useState("");
 
   const submit = () => {
     if (!disableInput) {
@@ -35,6 +36,7 @@ const Letters: FunctionalComponent<LettersProps> = ({
   };
 
   window.onkeydown = (e: KeyboardEvent) => {
+    setLastKeyPressed(e.key.toLowerCase());
     !disableInput && chooseLetter(e.key.toLowerCase());
   };
 
@@ -48,15 +50,23 @@ const Letters: FunctionalComponent<LettersProps> = ({
       <div class="grid">
         {letters.map((l, i) => (
           <div key={i} className={i == 0 ? "letter center" : "letter"}>
-            <button onClick={() => chooseLetter(l)}>{l}</button>
+            <button
+              className={lastKeyPressed === l ? "pressed" : ""}
+              onClick={() => chooseLetter(l)}
+            >
+              {l}
+            </button>
           </div>
         ))}
       </div>
       <div class="controls">
-        <button class="shuffle" onClick={onShuffle}>
+        <button className="shuffle" onClick={onShuffle}>
           Shuffle
         </button>
-        <button class="submit" onClick={() => submit()}>
+        <button
+          className={"submit" + (lastKeyPressed === "enter" ? " pressed" : "")}
+          onClick={() => submit()}
+        >
           Enter
         </button>
       </div>

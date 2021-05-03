@@ -170,11 +170,15 @@ button {
   padding: 0.75rem;
   font-size: 1.2rem;
 }
-button:active {
+button:active,
+button.pressed {
   background: rgb(213, 213, 213);
 }
 button:disabled {
   color: rgb(114, 114, 114);
+}
+button.pressed {
+  animation: 0.3s fade-out linear forwards;
 }
 
 main {
@@ -186,12 +190,6 @@ main {
 main > section {
   flex-basis: 40%;
   padding: 1rem;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 1;
-  }
 }
 
 .input-container {
@@ -309,4 +307,18 @@ main > section {
   text-align: right;
   border-radius: 0.25rem;
   padding: 0.125rem;
+}
+
+/* ANIMATIONS */
+
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  100% {
+    background: var(--background-color);
+  }
 }
