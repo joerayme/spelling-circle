@@ -7,6 +7,14 @@ import WordList from "./wordList";
 import Loading from "./loading";
 import Progress from "./progress";
 
+const shuffle = (arr: string[]) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [words, setWords] = useState<string[]>([]);
@@ -31,13 +39,9 @@ const App = () => {
       const words = (await response.text()).split("\n");
       const seed = words[Math.floor(Math.random() * words.length)];
 
-      const letters = ((arr) => {
-        for (let i = arr.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-      })(seed.split("").filter((a, i, arr) => arr.indexOf(a) === i));
+      const letters = shuffle(
+        seed.split("").filter((a, i, arr) => arr.indexOf(a) === i)
+      );
 
       setLetters(letters);
 
@@ -52,6 +56,13 @@ const App = () => {
     seeds.then(() => setLoading(false));
   }, []);
 
+  const onShuffle = () => {
+    const firstLetter = letters[0];
+    const rest = letters.slice(1);
+
+    setLetters([firstLetter].concat(...shuffle(rest)));
+  };
+
   return (
     <div id="app">
       <nav>
@@ -64,7 +75,7 @@ const App = () => {
           <Fragment>
             <section>
               <LettersInput letters={letters} submitWord={submitWord} />
-              <Letters letters={letters} />
+              <Letters letters={letters} onShuffle={onShuffle} />
             </section>
             <section>
               <Progress availableWords={words} foundWords={foundWords} />

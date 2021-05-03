@@ -204,7 +204,7 @@ main > section {
   animation: 1s blink step-end infinite;
 }
 
-.letters {
+.letters .grid {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
