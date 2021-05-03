@@ -1,10 +1,18 @@
-import { h } from "preact";
+import { FunctionalComponent, h } from "preact";
 import { useState } from "preact/hooks";
 
-const LettersInput = ({ letters, submitWord }) => {
+type LettersInputProps = {
+  letters: string[];
+  submitWord: (word: string) => void;
+};
+
+const LettersInput: FunctionalComponent<LettersInputProps> = ({
+  letters,
+  submitWord,
+}) => {
   const [currentWord, setCurrentWord] = useState("");
 
-  window.onkeydown = (e) => {
+  window.onkeydown = (e: KeyboardEvent) => {
     const letter = e.key.toLowerCase();
     if (letters.includes(letter)) {
       setCurrentWord(currentWord + letter);

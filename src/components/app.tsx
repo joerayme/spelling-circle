@@ -1,4 +1,4 @@
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import { useState, useEffect } from "preact/hooks";
 
 import Letters from "./letters";
@@ -8,11 +8,11 @@ import Loading from "./loading";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
-  const [words, setWords] = useState([]);
-  const [letters, setLetters] = useState([]);
-  const [foundWords, setFoundWords] = useState([]);
+  const [words, setWords] = useState<string[]>([]);
+  const [letters, setLetters] = useState<string[]>([]);
+  const [foundWords, setFoundWords] = useState<string[]>([]);
 
-  const submitWord = (word) => {
+  const submitWord = (word: string) => {
     if (
       word.includes(letters[0]) &&
       words.includes(word) &&
@@ -55,13 +55,13 @@ const App = () => {
         {loading ? (
           <Loading />
         ) : (
-          <>
+          <Fragment>
             <div>
               <LettersInput letters={letters} submitWord={submitWord} />
               <Letters letters={letters} />
             </div>
             <WordList words={foundWords} />{" "}
-          </>
+          </Fragment>
         )}
       </main>
     </div>

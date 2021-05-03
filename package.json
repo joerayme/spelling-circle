@@ -16,7 +16,11 @@
       "build/"
     ]
   },
+  "browserslist": "> 0.25%, not dead",
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-typescript": "^7.13.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-preact-pure": "^2.0.0",
     "eslint": "^6.0.1",
@@ -24,7 +28,8 @@
     "jest": "^24.9.0",
     "jest-preset-preact": "^1.0.0",
     "preact-cli": "^3.0.0",
-    "sirv-cli": "1.0.3"
+    "sirv-cli": "1.0.3",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "preact": "^10.3.2",

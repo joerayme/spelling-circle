@@ -1,10 +1,17 @@
-
 {
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ],
+    ["@babel/preset-typescript", { "jsxPragma": "h" }]
+  ],
+  "plugins": [["@babel/transform-react-jsx", { "pragma": "h" }]],
   "env": {
     "test": {
-      "presets": [
-        ["preact-cli/babel", { "modules": "commonjs" }]
-      ]
+      "presets": [["preact-cli/babel", { "modules": "commonjs" }]]
     }
   }
 }

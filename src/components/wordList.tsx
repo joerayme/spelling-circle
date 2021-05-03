@@ -1,6 +1,10 @@
-import { h } from "preact";
+import { FunctionalComponent, h } from "preact";
 
-const WordList = ({ words }) => (
+type WordListProps = {
+  words: string[];
+};
+
+const WordList: FunctionalComponent<WordListProps> = ({ words }) => (
   <div class="wordlist">
     <h2>Found words</h2>
     <p>
