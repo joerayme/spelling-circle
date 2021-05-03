@@ -5,6 +5,7 @@ import Letters from "./letters";
 import LettersInput from "./lettersInput";
 import WordList from "./wordList";
 import Loading from "./loading";
+import Progress from "./progress";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -23,11 +24,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    const w = fetch("./wordlist.txt").then(async (response) => {
-      setWords((await response.text()).split("\n"));
-      return true;
+    const allWords = fetch("./wordlist.txt").then(async (response) => {
+      return (await response.text()).split("\n");
     });
-    const s = fetch("./seedwords.txt").then(async (response) => {
+    const seeds = fetch("./seedwords.txt").then(async (response) => {
       const words = (await response.text()).split("\n");
       const seed = words[Math.floor(Math.random() * words.length)];
 
@@ -40,10 +40,16 @@ const App = () => {
       })(seed.split("").filter((a, i, arr) => arr.indexOf(a) === i));
 
       setLetters(letters);
+
+      const regex = RegExp(`^[${letters.join("")}]+$`);
+      const availableWords = (await allWords).filter((w) => w.match(regex));
+
+      setWords(availableWords);
+
       return true;
     });
 
-    Promise.all([w, s]).then(() => setLoading(false));
+    seeds.then(() => setLoading(false));
   }, []);
 
   return (
@@ -56,11 +62,14 @@ const App = () => {
           <Loading />
         ) : (
           <Fragment>
-            <div>
+            <section>
               <LettersInput letters={letters} submitWord={submitWord} />
               <Letters letters={letters} />
-            </div>
-            <WordList words={foundWords} />{" "}
+            </section>
+            <section>
+              <Progress availableWords={words} foundWords={foundWords} />
+              <WordList words={foundWords} />{" "}
+            </section>
           </Fragment>
         )}
       </main>

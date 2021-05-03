@@ -150,7 +150,7 @@ p {
 
 h1,
 h2 {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   font-weight: bold;
 }
 
@@ -168,7 +168,7 @@ main {
   justify-content: center;
 }
 
-main > div {
+main > section {
   flex-basis: 40%;
   padding: 1rem;
 }
@@ -270,4 +270,20 @@ main > div {
   list-style: none;
   text-transform: capitalize;
   margin-bottom: 0.5rem;
+}
+
+.progress {
+  width: 100%;
+  min-height: 1rem;
+  border: 1px solid #2f2f2f;
+  background: #797979;
+  border-radius: 0.25rem;
+  padding: 0.125rem;
+}
+.progress .indicator {
+  background: #2f2f2f;
+  color: white;
+  text-align: right;
+  border-radius: 0.25rem;
+  padding: 0.125rem;
 }
