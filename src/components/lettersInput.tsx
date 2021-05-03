@@ -14,13 +14,14 @@ const LettersInput: FunctionalComponent<LettersInputProps> = ({
 }) => {
   return (
     <div class={"input-container" + (disableInput ? " disabled" : "")}>
-      <div>
+      <p aria-hidden={true}>
         {currentWord.split("").map((l, i) => (
           <span className={l === letters[0] ? "highlight" : ""} key={i}>
             {l}
           </span>
         ))}
-      </div>
+      </p>
+      <input type="text" id="lettersInput" value={currentWord} />
     </div>
   );
 };
