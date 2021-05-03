@@ -148,11 +148,8 @@ main > div {
 }
 
 @keyframes blink {
-  0% {
+  50% {
     opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -178,7 +175,7 @@ main > div {
   height: 1.125rem;
   display: inline-flex;
 
-  /* animation: 1000ms blink step-end infinite; */
+  animation: 1s blink step-end infinite;
 }
 
 .letters {
