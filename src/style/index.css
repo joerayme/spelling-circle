@@ -136,6 +136,7 @@ table {
 body {
   background: var(--background-color);
   color: #2f2f2f;
+  line-height: 1.2;
 }
 
 p {
@@ -143,7 +144,7 @@ p {
 }
 
 #app {
-  padding: 2rem;
+  padding: 1rem;
   max-width: 70rem;
   margin: 0 auto;
   font-family: "Merriweather", serif;
@@ -183,7 +184,7 @@ button.pressed {
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -228,10 +229,10 @@ main > section {
 }
 
 .letters .letter {
-  flex: 1 25%;
   display: flex;
+  flex: 1;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .letters .letter button {
@@ -244,41 +245,6 @@ main > section {
   text-align: center;
 }
 
-.letters .letter:nth-child(1) {
-  order: 4;
-}
-
-.letters .letter:nth-child(2) {
-  order: 1;
-}
-.letters .letter:nth-child(2),
-.letters .letter:nth-child(3) {
-  flex-basis: 40%;
-}
-
-.letters .letter:nth-child(3) {
-  order: 2;
-}
-
-.letters .letter:nth-child(4) {
-  order: 3;
-}
-
-.letters .letter:nth-child(5) {
-  order: 5;
-}
-
-.letters .letter:nth-child(6) {
-  order: 6;
-}
-
-.letters .letter:nth-child(7) {
-  order: 7;
-}
-
-.letters .center {
-  order: 2;
-}
 .letters .center button {
   color: var(--main-color);
 }
@@ -320,5 +286,56 @@ main > section {
 @keyframes fade-out {
   100% {
     background: var(--background-color);
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  #app {
+    padding: 2rem;
+  }
+
+  main {
+    flex-direction: row;
+  }
+
+  .letters .letter {
+    flex: 1 25%;
+    padding: 1rem;
+  }
+
+  .letters .letter:nth-child(1) {
+    order: 4;
+  }
+
+  .letters .letter:nth-child(2) {
+    order: 1;
+  }
+  .letters .letter:nth-child(2),
+  .letters .letter:nth-child(3) {
+    flex-basis: 40%;
+  }
+
+  .letters .letter:nth-child(3) {
+    order: 2;
+  }
+
+  .letters .letter:nth-child(4) {
+    order: 3;
+  }
+
+  .letters .letter:nth-child(5) {
+    order: 5;
+  }
+
+  .letters .letter:nth-child(6) {
+    order: 6;
+  }
+
+  .letters .letter:nth-child(7) {
+    order: 7;
+  }
+
+  .letters .center {
+    order: 2;
   }
 }
