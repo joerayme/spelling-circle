@@ -21,7 +21,8 @@ const WordList: FunctionalComponent<WordListProps> = ({
       </button>
     </p>
     <p>
-      {foundWords.length} word{foundWords.length != 1 ? "s" : ""} found
+      You found {foundWords.length} word{foundWords.length != 1 ? "s" : ""}
+      {revealed ? ` out of ${availableWords.length}` : ""}
     </p>
     <ol>
       {(revealed ? availableWords : foundWords).map((w, i) => {
