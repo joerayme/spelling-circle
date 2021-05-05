@@ -1,5 +1,4 @@
 import { FunctionalComponent, h } from "preact";
-import { useState } from "preact/hooks";
 
 type LettersInputProps = {
   letters: string[];
@@ -16,12 +15,21 @@ const LettersInput: FunctionalComponent<LettersInputProps> = ({
     <div class={"input-container" + (disableInput ? " disabled" : "")}>
       <p aria-hidden={true}>
         {currentWord.split("").map((l, i) => (
-          <span className={l === letters[0] ? "highlight" : ""} key={i}>
+          <span
+            className={l === letters[0] ? "highlight" : ""}
+            data-testid="letter"
+            key={i}
+          >
             {l}
           </span>
         ))}
       </p>
-      <input type="text" id="lettersInput" value={currentWord} />
+      <input
+        type="text"
+        id="lettersInput"
+        value={currentWord}
+        data-testid="input"
+      />
     </div>
   );
 };

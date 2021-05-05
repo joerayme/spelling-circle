@@ -89,7 +89,7 @@ const App = () => {
                 availableWords={words}
                 revealed={revealed}
                 onReveal={() => setRevealed(true)}
-              />{" "}
+              />
             </section>
           </Fragment>
         )}

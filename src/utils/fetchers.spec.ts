@@ -16,6 +16,9 @@ const mockMath = Object.create(global.Math);
 mockMath.random = jest.fn().mockReturnValue(0);
 global.Math = mockMath;
 
+global.window = Object.create(window);
+Object.defineProperty(global.window, "location", { value: {} });
+
 jest.mock("./words");
 
 describe("fetchers", () => {
@@ -59,11 +62,7 @@ describe("fetchers", () => {
     ]);
 
     it("should return false if there's no location hash", async () => {
-      global.window = {
-        location: {
-          hash: "",
-        } as Location,
-      } as Window & typeof globalThis;
+      global.window.location.hash = "";
 
       const response = await getLettersFromLocationHash(allWords);
 
@@ -71,11 +70,7 @@ describe("fetchers", () => {
     });
 
     it("should return false if it can't base64 decode the data", async () => {
-      global.window = {
-        location: {
-          hash: "#€£lsdfa",
-        } as Location,
-      } as Window & typeof globalThis;
+      global.window.location.hash = "#€£lsdfa";
 
       const response = await getLettersFromLocationHash(allWords);
 
@@ -83,11 +78,7 @@ describe("fetchers", () => {
     });
 
     it("should return false if the letter count is not 7", async () => {
-      global.window = {
-        location: {
-          hash: "#YXNkZmdo", // asdfgh
-        } as Location,
-      } as Window & typeof globalThis;
+      global.window.location.hash = "#YXNkZmdo"; // asdfgh
 
       const responseWithSixChars = await getLettersFromLocationHash(allWords);
 
@@ -105,11 +96,7 @@ describe("fetchers", () => {
     });
 
     it("should return available words if the letter count is 7", async () => {
-      global.window = {
-        location: {
-          hash: "#b25ld2FyZA==", // oneward
-        } as Location,
-      } as Window & typeof globalThis;
+      global.window.location.hash = "#b25ld2FyZA=="; // oneward
 
       const response = await getLettersFromLocationHash(allWords);
 
