@@ -15,6 +15,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm install
+          npm test
           npm run-script build
 
       - name: Deploy 🚀

@@ -27,7 +27,6 @@ const getLettersFromLocationHash = async (
   const hash = window.location.hash.slice(1);
   if (hash) {
     try {
-      console.log(hash);
       const letters = atob(hash).split("");
       if (letters.length === 7) {
         return {
