@@ -26,12 +26,14 @@ const Letters: FunctionalComponent<LettersProps> = ({
   };
 
   const chooseLetter = (letter: string) => {
-    if (letters.includes(letter)) {
-      setCurrentWord(currentWord + letter);
-    } else if (letter == "backspace") {
-      setCurrentWord(currentWord.slice(0, currentWord.length - 1));
-    } else if (letter == "enter") {
-      submit();
+    if (!disableInput) {
+      if (letters.includes(letter)) {
+        setCurrentWord(currentWord + letter);
+      } else if (letter == "backspace") {
+        setCurrentWord(currentWord.slice(0, currentWord.length - 1));
+      } else if (letter == "enter") {
+        submit();
+      }
     }
   };
 
@@ -39,7 +41,7 @@ const Letters: FunctionalComponent<LettersProps> = ({
     if (!e.altKey && !e.ctrlKey && !e.metaKey) {
       e.preventDefault();
       setLastKeyPressed(e.key.toLowerCase());
-      !disableInput && chooseLetter(e.key.toLowerCase());
+      chooseLetter(e.key.toLowerCase());
     }
   };
 
