@@ -65,6 +65,14 @@ const Letters: FunctionalComponent<LettersProps> = ({
         ))}
       </div>
       <div class="controls">
+        <button
+          className={
+            "delete" + (lastKeyPressed === "backspace" ? " pressed" : "")
+          }
+          onClick={() => chooseLetter("backspace")}
+        >
+          Delete
+        </button>
         <button className="shuffle" onClick={onShuffle}>
           Shuffle
         </button>

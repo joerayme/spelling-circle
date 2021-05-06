@@ -176,6 +176,31 @@ describe("Letters", () => {
     });
   });
 
+  it("should delete letters when delete button is used", async () => {
+    const letters = ["a", "b", "c", "d", "e", "f", "g"];
+    render(
+      <Letters
+        letters={letters}
+        disableInput={false}
+        onShuffle={jest.fn()}
+        submitWord={jest.fn()}
+      />
+    );
+
+    fireEvent.keyDown(document.activeElement || document.body, {
+      key: "a",
+    });
+    fireEvent.keyDown(document.activeElement || document.body, {
+      key: "b",
+    });
+    fireEvent.click(await screen.findByText("Delete"));
+
+    await waitFor(async () => {
+      const currentWord = await screen.findByTestId("currentWord");
+      expect(currentWord.textContent).toEqual("a");
+    });
+  });
+
   it("should shuffle when the shuffle button is clicked", async () => {
     const letters = ["a", "b", "c", "d", "e", "f", "g"];
     const shuffle = jest.fn();
